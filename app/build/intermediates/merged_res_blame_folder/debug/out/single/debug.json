@@ -1,0 +1,54 @@
+[
+    {
+        "merged": "com.instasaver.app-merged_res-69:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.instasaver.app-main-71:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.instasaver.app-main-71:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.instasaver.app-main-71:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.instasaver.app-main-71:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.instasaver.app-main-71:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/drawable_ic_cancel.xml.flat",
+        "source": "com.instasaver.app-main-71:/drawable/ic_cancel.xml"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.instasaver.app-main-71:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.instasaver.app-main-71:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.instasaver.app-main-71:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/drawable_ic_download.xml.flat",
+        "source": "com.instasaver.app-main-71:/drawable/ic_download.xml"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/xml_file_paths.xml.flat",
+        "source": "com.instasaver.app-main-71:/xml/file_paths.xml"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.instasaver.app-main-71:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.instasaver.app-merged_res-69:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.instasaver.app-main-71:/mipmap-hdpi/ic_launcher.png"
+    }
+]

@@ -1,0 +1,11 @@
+R_DEF: Internal format may change without notice
+local
+drawable ic_cancel
+drawable ic_download
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string channel_downloads_desc
+string channel_downloads_name
+style Theme.InstaSaveBR
+xml file_paths

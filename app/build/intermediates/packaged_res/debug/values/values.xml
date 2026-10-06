@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">InstaSave BR</string>
+    <string name="channel_downloads_desc">Progresso dos downloads de vídeo</string>
+    <string name="channel_downloads_name">Downloads</string>
+    <style name="Theme.InstaSaveBR" parent="android:Theme.Material.NoActionBar"/>
+</resources>

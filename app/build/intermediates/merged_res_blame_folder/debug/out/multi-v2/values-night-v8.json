@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.instasaver.app-mergeDebugResources-67:/values-night-v8/values-night-v8.xml",
+            "map": [
+                {
+                    "source": "/home/mardio/PROJETOS2026/instasaver/app/src/main/res/values-night/themes.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "82",
+                        "endOffsets": "94"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "81",
+                        "endOffsets": "132"
+                    }
+                }
+            ]
+        }
+    ]
+}

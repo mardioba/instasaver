@@ -1,0 +1,406 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.instasaver.app"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="29"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:4:5-67
+11-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:5:5-79
+12-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:5:22-76
+13    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+13-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:6:5-77
+13-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:6:22-74
+14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+14-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:7:5-77
+14-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:7:22-74
+15    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+15-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:8:5-87
+15-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:8:22-84
+16    <uses-permission android:name="android.permission.WAKE_LOCK" />
+16-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:23:5-68
+16-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:23:22-65
+17    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+17-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:25:5-81
+17-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:25:22-78
+18
+19    <permission
+19-->[androidx.core:core:1.12.0] /home/mardio/.gradle/caches/transforms-3/05365192e8c93a127ae620124358980f/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+20        android:name="com.instasaver.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+20-->[androidx.core:core:1.12.0] /home/mardio/.gradle/caches/transforms-3/05365192e8c93a127ae620124358980f/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+21        android:protectionLevel="signature" />
+21-->[androidx.core:core:1.12.0] /home/mardio/.gradle/caches/transforms-3/05365192e8c93a127ae620124358980f/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+22
+23    <uses-permission android:name="com.instasaver.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+23-->[androidx.core:core:1.12.0] /home/mardio/.gradle/caches/transforms-3/05365192e8c93a127ae620124358980f/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+23-->[androidx.core:core:1.12.0] /home/mardio/.gradle/caches/transforms-3/05365192e8c93a127ae620124358980f/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+24
+25    <application
+25-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:10:5-60:19
+26        android:name="com.instasaver.app.InstaSaveApp"
+26-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:11:9-37
+27        android:allowBackup="true"
+27-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:12:9-35
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.12.0] /home/mardio/.gradle/caches/transforms-3/05365192e8c93a127ae620124358980f/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+29        android:debuggable="true"
+30        android:extractNativeLibs="false"
+31        android:icon="@mipmap/ic_launcher"
+31-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:13:9-43
+32        android:label="@string/app_name"
+32-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:14:9-41
+33        android:roundIcon="@mipmap/ic_launcher_round"
+33-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:15:9-54
+34        android:supportsRtl="true"
+34-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:16:9-35
+35        android:theme="@style/Theme.InstaSaveBR" >
+35-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:17:9-49
+36        <activity
+36-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:19:9-34:20
+37            android:name="com.instasaver.app.MainActivity"
+37-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:20:13-41
+38            android:exported="true"
+38-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:21:13-36
+39            android:label="@string/app_name" >
+39-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:22:13-45
+40            <intent-filter>
+40-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:23:13-26:29
+41                <action android:name="android.intent.action.MAIN" />
+41-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:24:17-69
+41-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:24:25-66
+42
+43                <category android:name="android.intent.category.LAUNCHER" />
+43-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:25:17-77
+43-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:25:27-74
+44            </intent-filter>
+45
+46            <!-- Receive shared links from Instagram -->
+47            <intent-filter>
+47-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:29:13-33:29
+48                <action android:name="android.intent.action.SEND" />
+48-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:30:17-69
+48-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:30:25-66
+49
+50                <category android:name="android.intent.category.DEFAULT" />
+50-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:31:17-76
+50-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:31:27-73
+51
+52                <data android:mimeType="text/plain" />
+52-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:32:17-55
+52-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:32:23-52
+53            </intent-filter>
+54        </activity>
+55
+56        <receiver
+56-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:36:9-38:40
+57            android:name="com.instasaver.app.data.downloader.DownloadCancelReceiver"
+57-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:37:13-67
+58            android:exported="false" />
+58-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:38:13-37
+59
+60        <activity
+60-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:40:9-44:50
+61            android:name="com.instasaver.app.ui.settings.LoginActivity"
+61-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:41:13-54
+62            android:exported="false"
+62-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:42:13-37
+63            android:hardwareAccelerated="true"
+63-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:44:13-47
+64            android:theme="@style/Theme.InstaSaveBR" />
+64-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:43:13-53
+65
+66        <service
+66-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:46:9-49:56
+67            android:name="androidx.work.impl.foreground.SystemForegroundService"
+67-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:47:13-81
+68            android:directBootAware="false"
+68-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:55:13-44
+69            android:enabled="@bool/enable_system_foreground_service_default"
+69-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:56:13-77
+70            android:exported="false"
+70-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:48:13-37
+71            android:foregroundServiceType="dataSync" />
+71-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:49:13-53
+72
+73        <provider
+74            android:name="androidx.core.content.FileProvider"
+74-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:52:13-62
+75            android:authorities="com.instasaver.app.fileprovider"
+75-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:53:13-64
+76            android:exported="false"
+76-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:54:13-37
+77            android:grantUriPermissions="true" >
+77-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:55:13-47
+78            <meta-data
+78-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:56:13-58:54
+79                android:name="android.support.FILE_PROVIDER_PATHS"
+79-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:57:17-67
+80                android:resource="@xml/file_paths" />
+80-->/home/mardio/PROJETOS2026/instasaver/app/src/main/AndroidManifest.xml:58:17-51
+81        </provider>
+82        <provider
+82-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:29:9-37:20
+83            android:name="androidx.startup.InitializationProvider"
+83-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:30:13-67
+84            android:authorities="com.instasaver.app.androidx-startup"
+84-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:31:13-68
+85            android:exported="false" >
+85-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:32:13-37
+86            <meta-data
+86-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:34:13-36:52
+87                android:name="androidx.work.WorkManagerInitializer"
+87-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:35:17-68
+88                android:value="androidx.startup" />
+88-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:36:17-49
+89            <meta-data
+89-->[androidx.emoji2:emoji2:1.3.0] /home/mardio/.gradle/caches/transforms-3/b6f178862473c4a857126cf1f271810c/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+90                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+90-->[androidx.emoji2:emoji2:1.3.0] /home/mardio/.gradle/caches/transforms-3/b6f178862473c4a857126cf1f271810c/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+91                android:value="androidx.startup" />
+91-->[androidx.emoji2:emoji2:1.3.0] /home/mardio/.gradle/caches/transforms-3/b6f178862473c4a857126cf1f271810c/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+92            <meta-data
+92-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/mardio/.gradle/caches/transforms-3/b5aa617bebe5bc4c2ae6066dd8ccfdbb/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
+93                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+93-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/mardio/.gradle/caches/transforms-3/b5aa617bebe5bc4c2ae6066dd8ccfdbb/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+94                android:value="androidx.startup" />
+94-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/mardio/.gradle/caches/transforms-3/b5aa617bebe5bc4c2ae6066dd8ccfdbb/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+95            <meta-data
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+96                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+97                android:value="androidx.startup" />
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+98        </provider>
+99
+100        <service
+100-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:39:9-45:35
+101            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+101-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:40:13-88
+102            android:directBootAware="false"
+102-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:41:13-44
+103            android:enabled="@bool/enable_system_alarm_service_default"
+103-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:42:13-72
+104            android:exported="false" />
+104-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:43:13-37
+105        <service
+105-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:46:9-52:35
+106            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+106-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:47:13-84
+107            android:directBootAware="false"
+107-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:48:13-44
+108            android:enabled="@bool/enable_system_job_service_default"
+108-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:49:13-70
+109            android:exported="true"
+109-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:50:13-36
+110            android:permission="android.permission.BIND_JOB_SERVICE" />
+110-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:51:13-69
+111
+112        <receiver
+112-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:61:9-66:35
+113            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+113-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:62:13-88
+114            android:directBootAware="false"
+114-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:63:13-44
+115            android:enabled="true"
+115-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:64:13-35
+116            android:exported="false" />
+116-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:65:13-37
+117        <receiver
+117-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:67:9-77:20
+118            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+118-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:68:13-106
+119            android:directBootAware="false"
+119-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:69:13-44
+120            android:enabled="false"
+120-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:70:13-36
+121            android:exported="false" >
+121-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:71:13-37
+122            <intent-filter>
+122-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:73:13-76:29
+123                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+123-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:74:17-87
+123-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:74:25-84
+124                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+124-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:75:17-90
+124-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:75:25-87
+125            </intent-filter>
+126        </receiver>
+127        <receiver
+127-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:78:9-88:20
+128            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+128-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:79:13-104
+129            android:directBootAware="false"
+129-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:80:13-44
+130            android:enabled="false"
+130-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:81:13-36
+131            android:exported="false" >
+131-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:82:13-37
+132            <intent-filter>
+132-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:84:13-87:29
+133                <action android:name="android.intent.action.BATTERY_OKAY" />
+133-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:85:17-77
+133-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:85:25-74
+134                <action android:name="android.intent.action.BATTERY_LOW" />
+134-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:86:17-76
+134-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:86:25-73
+135            </intent-filter>
+136        </receiver>
+137        <receiver
+137-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:89:9-99:20
+138            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+138-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:90:13-104
+139            android:directBootAware="false"
+139-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:91:13-44
+140            android:enabled="false"
+140-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:92:13-36
+141            android:exported="false" >
+141-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:93:13-37
+142            <intent-filter>
+142-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:95:13-98:29
+143                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+143-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:96:17-83
+143-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:96:25-80
+144                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+144-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:97:17-82
+144-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:97:25-79
+145            </intent-filter>
+146        </receiver>
+147        <receiver
+147-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:100:9-109:20
+148            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+148-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:101:13-103
+149            android:directBootAware="false"
+149-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:102:13-44
+150            android:enabled="false"
+150-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:103:13-36
+151            android:exported="false" >
+151-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:104:13-37
+152            <intent-filter>
+152-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:106:13-108:29
+153                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+153-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:107:17-79
+153-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:107:25-76
+154            </intent-filter>
+155        </receiver>
+156        <receiver
+156-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:110:9-121:20
+157            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+157-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:111:13-88
+158            android:directBootAware="false"
+158-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:112:13-44
+159            android:enabled="false"
+159-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:113:13-36
+160            android:exported="false" >
+160-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:114:13-37
+161            <intent-filter>
+161-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:116:13-120:29
+162                <action android:name="android.intent.action.BOOT_COMPLETED" />
+162-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:117:17-79
+162-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:117:25-76
+163                <action android:name="android.intent.action.TIME_SET" />
+163-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:118:17-73
+163-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:118:25-70
+164                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+164-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:119:17-81
+164-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:119:25-78
+165            </intent-filter>
+166        </receiver>
+167        <receiver
+167-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:122:9-131:20
+168            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+168-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:123:13-99
+169            android:directBootAware="false"
+169-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:124:13-44
+170            android:enabled="@bool/enable_system_alarm_service_default"
+170-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:125:13-72
+171            android:exported="false" >
+171-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:126:13-37
+172            <intent-filter>
+172-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:128:13-130:29
+173                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+173-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:129:17-98
+173-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:129:25-95
+174            </intent-filter>
+175        </receiver>
+176        <receiver
+176-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:132:9-142:20
+177            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+177-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:133:13-78
+178            android:directBootAware="false"
+178-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:134:13-44
+179            android:enabled="true"
+179-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:135:13-35
+180            android:exported="true"
+180-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:136:13-36
+181            android:permission="android.permission.DUMP" >
+181-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:137:13-57
+182            <intent-filter>
+182-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:139:13-141:29
+183                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+183-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:140:17-88
+183-->[androidx.work:work-runtime:2.9.0] /home/mardio/.gradle/caches/transforms-3/2bd553ea6212e987323af6bea1aa1554/transformed/work-runtime-2.9.0/AndroidManifest.xml:140:25-85
+184            </intent-filter>
+185        </receiver>
+186
+187        <activity
+187-->[androidx.compose.ui:ui-tooling-android:1.6.1] /home/mardio/.gradle/caches/transforms-3/f6a91301caeac5523b7440e943c9d626/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+188            android:name="androidx.compose.ui.tooling.PreviewActivity"
+188-->[androidx.compose.ui:ui-tooling-android:1.6.1] /home/mardio/.gradle/caches/transforms-3/f6a91301caeac5523b7440e943c9d626/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+189            android:exported="true" />
+189-->[androidx.compose.ui:ui-tooling-android:1.6.1] /home/mardio/.gradle/caches/transforms-3/f6a91301caeac5523b7440e943c9d626/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+190
+191        <service
+191-->[androidx.room:room-runtime:2.6.1] /home/mardio/.gradle/caches/transforms-3/c2cd43fde83dd9a1a88da93eb036147e/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+192            android:name="androidx.room.MultiInstanceInvalidationService"
+192-->[androidx.room:room-runtime:2.6.1] /home/mardio/.gradle/caches/transforms-3/c2cd43fde83dd9a1a88da93eb036147e/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+193            android:directBootAware="true"
+193-->[androidx.room:room-runtime:2.6.1] /home/mardio/.gradle/caches/transforms-3/c2cd43fde83dd9a1a88da93eb036147e/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+194            android:exported="false" />
+194-->[androidx.room:room-runtime:2.6.1] /home/mardio/.gradle/caches/transforms-3/c2cd43fde83dd9a1a88da93eb036147e/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+195
+196        <receiver
+196-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+197            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+197-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+198            android:directBootAware="false"
+198-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+199            android:enabled="true"
+199-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+200            android:exported="true"
+200-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+201            android:permission="android.permission.DUMP" >
+201-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+202            <intent-filter>
+202-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+203                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+203-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+203-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+204            </intent-filter>
+205            <intent-filter>
+205-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+206                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+206-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+206-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+207            </intent-filter>
+208            <intent-filter>
+208-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+209                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+209-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+209-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+210            </intent-filter>
+211            <intent-filter>
+211-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+212                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+212-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+212-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/mardio/.gradle/caches/transforms-3/884614ab9cce7ddf37eb57f84fec028a/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+213            </intent-filter>
+214        </receiver>
+215    </application>
+216
+217</manifest>

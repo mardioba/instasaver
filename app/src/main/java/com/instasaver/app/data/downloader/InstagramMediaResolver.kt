@@ -7,9 +7,12 @@ import okhttp3.Request
 import java.util.concurrent.TimeUnit
 
 data class InstagramMedia(
+    /** Direct URL of the media file (mp4 for videos, jpg for photo posts). */
     val videoUrl: String,
     val thumbnailUrl: String?,
-    val title: String?
+    val title: String?,
+    /** False when the post is a photo (including photos with music). */
+    val isVideo: Boolean = true
 )
 
 sealed class ResolveResult {
@@ -89,6 +92,19 @@ class InstagramMediaResolver(
             )
         }
 
+        // Photo posts (including photos with music) expose only an image URL,
+        // never a video. Prefer the high-resolution display_url from the page
+        // data, falling back to the og:image tag. Only accept URLs from the
+        // media CDN (scontent) so login/interstitial pages (which point to
+        // static.cdninstagram.com assets) are not mistaken for posts.
+        val imageUrl = (extractJsonString(html, "display_url") ?: extractMeta(html, "og:image"))
+            ?.takeIf { it.contains("scontent") }
+        if (imageUrl != null) {
+            return ResolveResult.Success(
+                InstagramMedia(imageUrl, imageUrl, extractMeta(html, "og:title"), isVideo = false)
+            )
+        }
+
         return when {
             html.contains("\"is_private\":true") -> ResolveResult.PrivateOrUnavailable
             html.contains("login/?next=") || html.contains("/accounts/login/") ->
@@ -99,8 +115,8 @@ class InstagramMediaResolver(
 
     private fun extractMeta(html: String, property: String): String? {
         val escaped = Regex.escape(property)
-        val m = Regex("""<meta[^>]+property="$escaped"[^>]+content="([^"]+)\""""").find(html)
-            ?: Regex("""<meta[^>]+content="([^"]+)"[^>]+property="$escaped"""").find(html)
+        val m = Regex("<meta[^>]+property=\"$escaped\"[^>]+content=\"([^\"]+)\"").find(html)
+            ?: Regex("<meta[^>]+content=\"([^\"]+)\"[^>]+property=\"$escaped\"").find(html)
         return m?.groupValues?.get(1)?.replace("&amp;", "&")
     }
 
@@ -109,6 +125,7 @@ class InstagramMediaResolver(
         return m.groupValues[1]
             .replace("\\/", "/")
             .replace("\\u0025", "%")
+            .replace("\\u0026", "&")
             .replace("&amp;", "&")
     }
 

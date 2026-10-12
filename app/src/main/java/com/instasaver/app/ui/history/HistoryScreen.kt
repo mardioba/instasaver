@@ -34,6 +34,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.instasaver.app.data.model.DownloadItem
 import com.instasaver.app.ui.download.formatSize
+import com.instasaver.app.ui.download.isImageFile
+import com.instasaver.app.ui.download.openMediaFile
 import com.instasaver.app.ui.download.shareVideo
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -86,7 +88,14 @@ private fun HistoryRow(item: DownloadItem, onOpenPlayer: (Uri) -> Unit, viewMode
                 val date = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(Date(item.timestamp))
                 Text("$date • ${formatSize(item.sizeBytes)}", style = MaterialTheme.typography.bodySmall)
             }
-            IconButton(onClick = { onOpenPlayer(Uri.parse(item.mediaStoreUri)) }) {
+            IconButton(onClick = {
+                val uri = Uri.parse(item.mediaStoreUri)
+                if (isImageFile(item.fileName)) {
+                    openMediaFile(context, uri, "image/jpeg")
+                } else {
+                    onOpenPlayer(uri)
+                }
+            }) {
                 Icon(Icons.Filled.PlayArrow, contentDescription = "reproduzir")
             }
             IconButton(onClick = { shareVideo(context, Uri.parse(item.mediaStoreUri)) }) {

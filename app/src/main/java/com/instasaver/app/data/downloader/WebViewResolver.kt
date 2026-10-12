@@ -56,8 +56,23 @@ class WebViewResolver(private val context: Context) {
                                 val videoFound = list.firstOrNull()
                                 if (!videoFound.isNullOrBlank() && cont.isActive) {
                                     cont.resume(ResolveResult.Success(InstagramMedia(videoFound, null, null)))
-                                } else if (cont.isActive) {
-                                    cont.resume(ResolveResult.Unsupported)
+                                } else {
+                                    // Photo posts (including photos with music) expose only an
+                                    // image; grab the highest-quality media-CDN image we can
+                                    // find, preferring post images over avatars.
+                                    val candidates = Regex("https?://[^\"'\\s<>]+?\\.(?:jpg|jpeg|webp)[^\"'\\s<>]*")
+                                        .findAll(cleaned)
+                                        .map { it.value }
+                                        .filter { it.contains("scontent") }
+                                        .toList()
+                                    val imageFound = candidates.firstOrNull { it.contains("/v/t51.2885") }
+                                        ?: candidates.firstOrNull()
+                                    android.util.Log.d("InstaSave", "webviewresolver image candidates: $imageFound")
+                                    if (imageFound != null && cont.isActive) {
+                                        cont.resume(ResolveResult.Success(InstagramMedia(imageFound, null, null, isVideo = false)))
+                                    } else if (cont.isActive) {
+                                        cont.resume(ResolveResult.Unsupported)
+                                    }
                                 }
                                 destroy()
                             }

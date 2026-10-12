@@ -22,11 +22,12 @@ class DownloadRepository(private val context: Context) {
 
     val history: Flow<List<DownloadItem>> = dao.observeAll()
 
-    fun startDownload(sourceUrl: String, videoUrl: String, title: String?): UUID {
+    fun startDownload(sourceUrl: String, videoUrl: String, title: String?, isVideo: Boolean = true): UUID {
         val data = Data.Builder()
             .putString(DownloadWorker.KEY_VIDEO_URL, videoUrl)
             .putString(DownloadWorker.KEY_SOURCE_URL, sourceUrl)
             .putString(DownloadWorker.KEY_TITLE, title)
+            .putBoolean(DownloadWorker.KEY_IS_VIDEO, isVideo)
             .build()
         val request = OneTimeWorkRequestBuilder<DownloadWorker>()
             .setConstraints(

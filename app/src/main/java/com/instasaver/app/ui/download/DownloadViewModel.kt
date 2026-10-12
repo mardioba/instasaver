@@ -30,7 +30,7 @@ sealed class DownloadUiState {
         val total: Long,
         val speed: Long
     ) : DownloadUiState()
-    data class Complete(val uri: Uri, val fileName: String) : DownloadUiState()
+    data class Complete(val uri: Uri, val fileName: String, val isVideo: Boolean = true) : DownloadUiState()
     data class Failed(val message: String) : DownloadUiState()
 }
 
@@ -102,7 +102,7 @@ class DownloadViewModel(
                     _state.value = DownloadUiState.Ready(wv.media)
                 } else {
                     _state.value = DownloadUiState.Failed(
-                        "Não foi possível obter este vídeo.\nVerifique se a publicação é pública e tente novamente."
+                        "Não foi possível obter esta mídia.\nVerifique se a publicação é pública e tente novamente."
                     )
                 }
             }
@@ -133,7 +133,7 @@ class DownloadViewModel(
 
     fun startDownload() {
         val media = preparedMedia ?: return
-        workId = repo.startDownload(sourceUrl, media.videoUrl, media.title)
+        workId = repo.startDownload(sourceUrl, media.videoUrl, media.title, media.isVideo)
         _workInfoLiveData = repo.workInfo(workId!!)
         _state.value = DownloadUiState.Downloading(0, 0, -1, 0)
     }
@@ -162,7 +162,7 @@ class DownloadViewModel(
                 val uri = info.outputData.getString(com.instasaver.app.data.downloader.DownloadWorker.KEY_FILE_URI)
                 val name = info.outputData.getString(com.instasaver.app.data.downloader.DownloadWorker.KEY_FILE_NAME) ?: "video.mp4"
                 if (uri != null) {
-                    _state.value = DownloadUiState.Complete(Uri.parse(uri), name)
+                    _state.value = DownloadUiState.Complete(Uri.parse(uri), name, preparedMedia?.isVideo ?: true)
                 } else {
                     _state.value = DownloadUiState.Failed("Formato não suportado ou arquivo salvo sem URI.")
                 }

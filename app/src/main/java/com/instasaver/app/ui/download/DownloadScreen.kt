@@ -73,7 +73,7 @@ fun DownloadScreen(
     ) {
         when (val s = state) {
             is DownloadUiState.Resolving -> {
-                Text("Obtendo informações do vídeo...", style = MaterialTheme.typography.titleMedium)
+                Text("Obtendo informações da mídia...", style = MaterialTheme.typography.titleMedium)
                 CircularProgressIndicator()
             }
 
@@ -91,6 +91,12 @@ fun DownloadScreen(
                 }
                 media.title?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
                 Text(viewModel.sourceUrl, style = MaterialTheme.typography.bodySmall)
+                if (!media.isVideo) {
+                    Text(
+                        "Post de foto — será salva a imagem em alta qualidade (sem a música, se houver).",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
                 Spacer(Modifier.height(8.dp))
                 Button(onClick = viewModel::startDownload, modifier = Modifier.fillMaxWidth()) {
                     Text("Baixar")
@@ -98,7 +104,7 @@ fun DownloadScreen(
             }
 
             is DownloadUiState.Downloading -> {
-                Text("Baixando vídeo...", style = MaterialTheme.typography.titleMedium)
+                Text("Baixando mídia...", style = MaterialTheme.typography.titleMedium)
                 LinearProgressIndicator(
                     progress = { if (s.total > 0) s.progress / 100f else 0f },
                     modifier = Modifier.fillMaxWidth()
@@ -120,15 +126,21 @@ fun DownloadScreen(
                 )
                 Text("Download concluído", style = MaterialTheme.typography.titleLarge)
                 Text(s.fileName)
-                Button(onClick = { onOpenPlayer(s.uri) }, modifier = Modifier.fillMaxWidth()) {
-                    Text("Abrir vídeo")
+                Button(
+                    onClick = {
+                        if (s.isVideo) onOpenPlayer(s.uri)
+                        else openMediaFile(context, s.uri, "image/jpeg")
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(if (s.isVideo) "Abrir vídeo" else "Abrir imagem")
                 }
                 OutlinedButton(
-                    onClick = { shareVideo(context, s.uri) },
+                    onClick = { shareMedia(context, s.uri, if (s.isVideo) "video/mp4" else "image/jpeg") },
                     modifier = Modifier.fillMaxWidth()
                 ) { Text("Compartilhar") }
                 OutlinedButton(
-                    onClick = { openDownloadsFolder(context) },
+                    onClick = { openDownloadsFolder(context, s.isVideo) },
                     modifier = Modifier.fillMaxWidth()
                 ) { Text("Abrir pasta") }
             }
@@ -157,19 +169,39 @@ fun formatSpeed(bytesPerSec: Long): String {
     return String.format(Locale.US, "%.1f MB/s", mb)
 }
 
-fun shareVideo(context: Context, uri: Uri) {
+fun shareVideo(context: Context, uri: Uri) = shareMedia(context, uri, "video/mp4")
+
+fun shareMedia(context: Context, uri: Uri, mimeType: String) {
     val intent = Intent(Intent.ACTION_SEND).apply {
-        type = "video/mp4"
+        type = mimeType
         putExtra(Intent.EXTRA_STREAM, uri)
-        clipData = ClipData.newUri(context.contentResolver, "video", uri)
+        clipData = ClipData.newUri(context.contentResolver, "media", uri)
         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
     }
-    context.startActivity(Intent.createChooser(intent, "Compartilhar vídeo"))
+    context.startActivity(Intent.createChooser(intent, "Compartilhar"))
 }
 
-fun openDownloadsFolder(context: Context) {
+fun openMediaFile(context: Context, uri: Uri, mimeType: String) {
+    val intent = Intent(Intent.ACTION_VIEW).apply {
+        setDataAndType(uri, mimeType)
+        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+    try {
+        context.startActivity(intent)
+    } catch (e: Exception) {
+        Toast.makeText(context, "Não foi possível abrir o arquivo.", Toast.LENGTH_SHORT).show()
+    }
+}
+
+fun isImageFile(fileName: String): Boolean {
+    val lower = fileName.lowercase(Locale.US)
+    return lower.endsWith(".jpg") || lower.endsWith(".jpeg") || lower.endsWith(".webp")
+}
+
+fun openDownloadsFolder(context: Context, isVideo: Boolean = true) {
     return try {
-        val path = Uri.parse("content://com.android.externalstorage.documents/document/primary:Movies%2FInstaSave%20BR")
+        val folder = if (isVideo) "Movies" else "Pictures"
+        val path = Uri.parse("content://com.android.externalstorage.documents/document/primary:$folder%2FInstaSave%20BR")
         val intent = Intent(Intent.ACTION_VIEW).apply {
             setDataAndType(path, "vnd.android.document/directory")
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

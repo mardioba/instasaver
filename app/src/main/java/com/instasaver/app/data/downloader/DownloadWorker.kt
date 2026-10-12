@@ -37,24 +37,30 @@ class DownloadWorker(
             ?: return@coroutineScope Result.failure(workDataOf(KEY_ERROR to "missing_url"))
         val sourceUrl = inputData.getString(KEY_SOURCE_URL) ?: ""
         val friendlyTitle = inputData.getString(KEY_TITLE)
+        val isVideo = inputData.getBoolean(KEY_IS_VIDEO, true)
 
-        setForeground(createForegroundInfo(0, 0, 0))
+        setForeground(createForegroundInfo(0, 0, 0, isVideo))
 
-        val fileName = buildFileName(friendlyTitle)
+        val fileName = buildFileName(friendlyTitle, isVideo)
+        val collection = if (isVideo) {
+            MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+        } else {
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        }
+        val subDir = if (isVideo) {
+            Environment.DIRECTORY_MOVIES + "/InstaSave BR"
+        } else {
+            Environment.DIRECTORY_PICTURES + "/InstaSave BR"
+        }
         val values = ContentValues().apply {
-            put(MediaStore.Video.Media.DISPLAY_NAME, fileName)
-            put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
-            put(
-                MediaStore.Video.Media.RELATIVE_PATH,
-                Environment.DIRECTORY_MOVIES + "/InstaSave BR"
-            )
-            put(MediaStore.Video.Media.IS_PENDING, 1)
+            put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
+            put(MediaStore.MediaColumns.MIME_TYPE, if (isVideo) "video/mp4" else "image/jpeg")
+            put(MediaStore.MediaColumns.RELATIVE_PATH, subDir)
+            put(MediaStore.MediaColumns.IS_PENDING, 1)
         }
 
         val resolver = applicationContext.contentResolver
-        val uri: Uri? = resolver.insert(
-            MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values
-        )
+        val uri: Uri? = resolver.insert(collection, values)
 
         if (uri == null) {
             return@coroutineScope Result.failure(workDataOf(KEY_ERROR to "storage"))
@@ -114,7 +120,7 @@ class DownloadWorker(
                                         KEY_SPEED to speed.toLong()
                                     )
                                 )
-                                setForeground(createForegroundInfo(pct, downloaded, total))
+                                setForeground(createForegroundInfo(pct, downloaded, total, isVideo))
                             }
                         }
                     }
@@ -123,7 +129,7 @@ class DownloadWorker(
 
             // finalize media store entry
             values.clear()
-            values.put(MediaStore.Video.Media.IS_PENDING, 0)
+            values.put(MediaStore.MediaColumns.IS_PENDING, 0)
             resolver.update(uri, values, null, null)
 
             val item = DownloadItem(
@@ -151,20 +157,20 @@ class DownloadWorker(
         }
     }
 
-    private fun buildFileName(title: String?): String {
+    private fun buildFileName(title: String?, isVideo: Boolean): String {
         val sdf = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
         val base = if (!title.isNullOrBlank()) {
             sanitize(title).take(60).ifBlank { "Instagram_${sdf.format(Date())}" }
         } else {
             "Instagram_${sdf.format(Date())}"
         }
-        return "$base.mp4"
+        return "$base.${if (isVideo) "mp4" else "jpg"}"
     }
 
     private fun sanitize(name: String): String =
         name.replace(Regex("[\\\\/:*?\"<>|]"), "_").trim().trim('.')
 
-    private fun createForegroundInfo(pct: Int, downloaded: Long, total: Long): ForegroundInfo {
+    private fun createForegroundInfo(pct: Int, downloaded: Long, total: Long, isVideo: Boolean): ForegroundInfo {
         val intent = Intent(applicationContext, MainActivity::class.java)
         val contentIntent = PendingIntent.getActivity(
             applicationContext, 0, intent,
@@ -180,11 +186,12 @@ class DownloadWorker(
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val text = if (total > 0) "$pct%" else "Baixando vídeo..."
+        val mediaLabel = if (isVideo) "vídeo" else "imagem"
+        val text = if (total > 0) "$pct%" else "Baixando $mediaLabel..."
         val notification = NotificationCompat.Builder(applicationContext, InstaSaveApp.CHANNEL_DOWNLOADS)
             .setSmallIcon(R.drawable.ic_download)
             .setContentTitle("InstaSave BR")
-            .setContentText(if (total > 0) "Baixando vídeo... $pct%" else "Baixando vídeo...")
+            .setContentText(if (total > 0) "Baixando $mediaLabel... $pct%" else "Baixando $mediaLabel...")
             .setOngoing(true)
             .setOnlyAlertOnce(true)
             .setProgress(if (total > 0) 100 else 0, pct, total <= 0)
@@ -223,6 +230,7 @@ class DownloadWorker(
         const val KEY_VIDEO_URL = "video_url"
         const val KEY_SOURCE_URL = "source_url"
         const val KEY_TITLE = "title"
+        const val KEY_IS_VIDEO = "is_video"
         const val KEY_PROGRESS = "progress"
         const val KEY_DOWNLOADED = "downloaded"
         const val KEY_TOTAL = "total"

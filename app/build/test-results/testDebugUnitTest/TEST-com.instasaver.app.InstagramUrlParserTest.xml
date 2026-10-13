@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.instasaver.app.InstagramUrlParserTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-06T13:20:14" hostname="mardio-TW-9800-101-HW" time="0.105">
+<testsuite name="com.instasaver.app.InstagramUrlParserTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-12T20:01:13" hostname="mardio-TW-9800-101-HW" time="0.021">
   <properties/>
-  <testcase name="nonInstagram_isRejected" classname="com.instasaver.app.InstagramUrlParserTest" time="0.086"/>
+  <testcase name="nonInstagram_isRejected" classname="com.instasaver.app.InstagramUrlParserTest" time="0.007"/>
   <testcase name="sharedTextWithUrl_extractsUrl" classname="com.instasaver.app.InstagramUrlParserTest" time="0.011"/>
-  <testcase name="shortHost_isValid" classname="com.instasaver.app.InstagramUrlParserTest" time="0.002"/>
+  <testcase name="shortHost_isValid" classname="com.instasaver.app.InstagramUrlParserTest" time="0.0"/>
   <testcase name="randomText_isInvalid" classname="com.instasaver.app.InstagramUrlParserTest" time="0.001"/>
   <testcase name="reelUrl_isValid_andNormalized" classname="com.instasaver.app.InstagramUrlParserTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

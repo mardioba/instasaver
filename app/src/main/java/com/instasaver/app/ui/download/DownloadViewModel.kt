@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
+import com.instasaver.app.data.downloader.DiagLog
 import com.instasaver.app.data.downloader.InstagramMedia
 import com.instasaver.app.data.downloader.InstagramMediaResolver
 import com.instasaver.app.data.downloader.InstagramUrlParser
@@ -62,6 +63,8 @@ class DownloadViewModel(
     }
 
     private suspend fun resolve() {
+        val app = getApplication<android.app.Application>()
+        DiagLog.log(app, "===== novo resolve: rawUrl=$rawUrl =====")
         _state.value = DownloadUiState.Resolving
         when (val parsed = InstagramUrlParser.parse(rawUrl)) {
             is InstagramUrlParser.Result.NotInstagram -> {
@@ -75,28 +78,35 @@ class DownloadViewModel(
             is InstagramUrlParser.Result.Valid -> sourceUrl = parsed.normalizedUrl
         }
         val st = try { settingsRepo.state.first() } catch (_: Exception) { null }
+        DiagLog.log(
+            app,
+            "sessão: loggedIn=${st?.loggedIn}, accessToken=${if (st?.accessToken.isNullOrBlank()) "ausente" else "presente"}, " +
+                "sessionId=${if (st?.sessionId.isNullOrBlank()) "ausente" else "presente"}"
+        )
         if (st != null && st.accessToken.isNotBlank()) {
             when (val r2 = oEmbedResolver.resolve(sourceUrl, st.accessToken)) {
                 is ResolveResult.Success -> {
+                    DiagLog.log(app, "oEmbed result=$r2")
                     preparedMedia = r2.media
                     _state.value = DownloadUiState.Ready(r2.media)
                     return
                 }
                 else -> {
+                    DiagLog.log(app, "oEmbed result=$r2 -> seguindo para resolve HTTP")
                     _state.value = DownloadUiState.Resolving
                 }
             }
         }
-        android.util.Log.d("InstaSave", "sourceUrl=$sourceUrl, loggedIn=${st?.loggedIn == true}")
+        DiagLog.log(app, "resolve start: sourceUrl=$sourceUrl, loggedIn=${st?.loggedIn == true}, sessionId=${if (st?.sessionId.isNullOrBlank()) "ausente" else "presente"}")
         when (val result = resolver.resolve(sourceUrl, st?.sessionId, st?.csrfToken)) {
             is ResolveResult.Success -> {
                 preparedMedia = result.media
                 _state.value = DownloadUiState.Ready(result.media)
             }
             ResolveResult.PrivateOrUnavailable -> {
-                android.util.Log.d("InstaSave", "trying WebView fallback")
+                DiagLog.log(app, "http result=PrivateOrUnavailable -> trying WebView fallback")
                 val wv = webViewResolver.resolve(sourceUrl)
-                android.util.Log.d("InstaSave", "webView fallback result=$wv")
+                DiagLog.log(app, "webView fallback result=$wv")
                 if (wv is ResolveResult.Success) {
                     preparedMedia = wv.media
                     _state.value = DownloadUiState.Ready(wv.media)
@@ -107,15 +117,15 @@ class DownloadViewModel(
                 }
             }
             ResolveResult.Unsupported -> {
-                android.util.Log.d("InstaSave", "trying WebView fallback")
+                DiagLog.log(app, "http result=Unsupported -> trying WebView fallback")
                 when (val wv = webViewResolver.resolve(sourceUrl)) {
                     is ResolveResult.Success -> {
-                        android.util.Log.d("InstaSave", "webView fallback result=$wv")
+                        DiagLog.log(app, "webView fallback result=$wv")
                         preparedMedia = wv.media
                         _state.value = DownloadUiState.Ready(wv.media)
                     }
                     else -> {
-                        android.util.Log.d("InstaSave", "webView fallback result=$wv")
+                        DiagLog.log(app, "webView fallback result=$wv")
                         _state.value = DownloadUiState.Failed(
                             "Este conteúdo não pode ser baixado pelo aplicativo (sem URL pública de mídia)."
                         )
@@ -175,7 +185,7 @@ class DownloadViewModel(
                         "storage" -> "Falta de espaço no armazenamento?"
                         "server_refused" -> "Servidor recusando a solicitação."
                         "cancelled" -> "Download interrompido."
-                        else -> "Não foi possível baixar este vídeo."
+                        else -> "Não foi possível baixar esta mídia. Verifique sua internet e tente novamente."
                     }
                 )
             }

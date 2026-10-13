@@ -19,12 +19,68 @@ import kotlin.coroutines.resume
  */
 class WebViewResolver(private val context: Context) {
 
-    suspend fun resolve(postUrl: String, timeoutMillis: Long = 20000): ResolveResult =
+    private val resolver = InstagramMediaResolver()
+
+    suspend fun resolve(postUrl: String, timeoutMillis: Long = 30000): ResolveResult =
         suspendCancellableCoroutine { cont ->
             val main = Handler(Looper.getMainLooper())
+            val startMs = System.currentTimeMillis()
             main.post {
                 var done = false
-                val webView = WebView(context).apply {
+                var attempt = 0
+                var webView: WebView? = null
+
+                fun finish(result: ResolveResult) {
+                    if (done) return
+                    done = true
+                    webView?.destroy()
+                    webView = null
+                    if (cont.isActive) cont.resume(result)
+                }
+
+                fun accept(raw: String, attemptNumber: Int) {
+                    val kind = raw.substringBefore('|', "")
+                    val url = raw.substringAfter('|', "")
+                    val media = if (url.startsWith("http")) {
+                        resolver.mediaFromJsUrl(url, isVideo = kind == "V")
+                    } else {
+                        null
+                    }
+                    if (media != null) {
+                        DiagLog.log(context, "webviewresolver achou mídia (#$attemptNumber): ${url.take(130)}")
+                        finish(ResolveResult.Success(media))
+                    } else {
+                        DiagLog.log(context, "webviewresolver mídia rejeitada (#$attemptNumber): ${raw.take(140)}")
+                        finish(ResolveResult.Unsupported)
+                    }
+                }
+
+                fun probe() {
+                    val view = webView
+                    if (done || view == null) return
+                    attempt++
+                    // O Instagram monta o post depois do load (React). Por isso
+                    // sondamos repetidamente até a mídia aparecer no DOM.
+                    if (attempt == 1 || attempt % 10 == 0) {
+                        view.evaluateJavascript(DIAG_JS) { diag ->
+                            DiagLog.log(context, "webviewresolver diag(#$attempt): $diag")
+                        }
+                    }
+                    view.evaluateJavascript(PROBE_JS) { json ->
+                        if (done) return@evaluateJavascript
+                        val raw = unescape(json)
+                        if (raw.startsWith("V|") || raw.startsWith("I|")) {
+                            accept(raw, attempt)
+                        } else if (System.currentTimeMillis() - startMs >= timeoutMillis) {
+                            DiagLog.log(context, "webviewresolver sem mídia após $attempt tentativas")
+                            finish(ResolveResult.Unsupported)
+                        } else {
+                            main.postDelayed({ probe() }, PROBE_INTERVAL_MS)
+                        }
+                    }
+                }
+
+                webView = WebView(context).apply {
                     settings.javaScriptEnabled = true
                     settings.domStorageEnabled = true
                     settings.userAgentString =
@@ -33,64 +89,49 @@ class WebViewResolver(private val context: Context) {
                         override fun onReceivedError(
                             view: WebView?, errorCode: Int, description: String?, failingUrl: String?
                         ) {
-                            android.util.Log.e("InstaSave", "webviewresolver error: $errorCode $description $failingUrl")
+                            DiagLog.log(context, "webviewresolver error: $errorCode $description $failingUrl")
                         }
 
                         override fun onPageFinished(view: WebView?, url: String?) {
-                            android.util.Log.d("InstaSave", "webviewresolver page finished: $url")
+                            DiagLog.log(context, "webviewresolver page finished: $url")
                             if (done) return
-                            view?.evaluateJavascript("document.title") { titleJson ->
-                                val postTitle = titleJson.trim('"').replace("\\u0026", "&")
-                                android.util.Log.d("InstaSave", "webviewresolver title json=$postTitle")
-                            }
-                            view?.evaluateJavascript("document.documentElement.outerHTML") { htmlJson ->
-                                if (done) return@evaluateJavascript
-                                done = true
-                                val cleaned = htmlJson.trim('"')
-                                    .replace("\\\\/", "/")
-                                    .replace("\\\"", "\"")
-                                    .replace("\\\\", "\\")
-                                android.util.Log.d("InstaSave", "webviewresolver cleaned hasVideoVersions=${cleaned.contains("video_versions")}, hasMp4=${cleaned.contains(".mp4")}, len=${cleaned.length}")
-                                val list = Regex("https?://[^\"'\\s<>]+?\\.mp4[^\"'\\s<>]*").findAll(cleaned).map { it.value }.toList()
-                                android.util.Log.d("InstaSave", "webviewresolver mp4 candidates: ${list.take(3)}")
-                                val videoFound = list.firstOrNull()
-                                if (!videoFound.isNullOrBlank() && cont.isActive) {
-                                    cont.resume(ResolveResult.Success(InstagramMedia(videoFound, null, null)))
-                                } else {
-                                    // Photo posts (including photos with music) expose only an
-                                    // image; grab the highest-quality media-CDN image we can
-                                    // find, preferring post images over avatars.
-                                    val candidates = Regex("https?://[^\"'\\s<>]+?\\.(?:jpg|jpeg|webp)[^\"'\\s<>]*")
-                                        .findAll(cleaned)
-                                        .map { it.value }
-                                        .filter { it.contains("scontent") }
-                                        .toList()
-                                    val imageFound = candidates.firstOrNull { it.contains("/v/t51.2885") }
-                                        ?: candidates.firstOrNull()
-                                    android.util.Log.d("InstaSave", "webviewresolver image candidates: $imageFound")
-                                    if (imageFound != null && cont.isActive) {
-                                        cont.resume(ResolveResult.Success(InstagramMedia(imageFound, null, null, isVideo = false)))
-                                    } else if (cont.isActive) {
-                                        cont.resume(ResolveResult.Unsupported)
-                                    }
-                                }
-                                destroy()
-                            }
+                            // O Instagram é um app React: entrega a casca do HTML e monta o
+                            // post DEPOIS, de forma assíncrona. Rodar o JS uma única vez no
+                            // onPageFinished enxerga a página vazia (confirmado em log:
+                            // imgs=[], resources=[] 15ms após o load). Por isso fazemos
+                            // polling até a mídia aparecer no DOM.
+                            main.postDelayed({ probe() }, FIRST_PROBE_DELAY_MS)
                         }
                     }
                     CookieManager.getInstance().setAcceptThirdPartyCookies(this, true)
                     loadUrl(postUrl)
                 }
-                cont.invokeOnCancellation {
-                    main.post { if (!done) { done = true; webView.destroy() } }
-                }
-                main.postDelayed({
-                    if (cont.isActive && !done) {
-                        done = true
-                        webView.destroy()
-                        cont.resume(ResolveResult.Unsupported)
-                    }
-                }, timeoutMillis)
+
+                cont.invokeOnCancellation { main.post { finish(ResolveResult.Unsupported) } }
+                main.postDelayed(
+                    {
+                        if (cont.isActive && !done) {
+                            DiagLog.log(context, "webviewresolver timeout geral após $attempt tentativas")
+                            finish(ResolveResult.Unsupported)
+                        }
+                    },
+                    timeoutMillis + 5000
+                )
             }
         }
+
+    /**
+     * `evaluateJavascript` devolve o valor JSON-encoded (uma string entre aspas,
+     * com `\/`, `\"` e `\\` escapados). Precisamos do texto cru para manipular
+     * a URL.
+     */
+    private fun unescape(json: String): String = json.trim('"')
+        .replace("\\/", "/")
+        .replace("\\\"", "\"")
+        .replace("\\\\", "\\")
+
+    companion object {
+        private const val FIRST_PROBE_DELAY_MS = 1500L
+        private const val PROBE_INTERVAL_MS = 1200L
+    }
 }

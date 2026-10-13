@@ -73,9 +73,12 @@ class DownloadWorker(
         var speed = 0.0
 
         try {
+            DiagLog.log(applicationContext, "worker start: isVideo=$isVideo, url=$videoUrl")
             val request = Request.Builder()
                 .url(videoUrl)
                 .header("User-Agent", "Mozilla/5.0 (Android; InstaSaveBR)")
+                .header("Accept", "*/*")
+                .header("Referer", "https://www.instagram.com/")
                 .get()
                 .build()
             val client = OkHttpClient.Builder()
@@ -84,6 +87,10 @@ class DownloadWorker(
                 .build()
 
             client.newCall(request).execute().use { response ->
+                val ct = response.header("Content-Type")
+                DiagLog.log(
+                    "worker response: code=${response.code}, contentType=$ct, len=${response.header("Content-Length")}"
+                )
                 if (!response.isSuccessful) {
                     resolver.delete(uri, null, null)
                     val err = if (response.code == 403 || response.code == 401) "server_refused" else "unsupported"
@@ -149,9 +156,11 @@ class DownloadWorker(
                 )
             )
         } catch (e: IOException) {
+            DiagLog.log("worker network error: ${e.javaClass.simpleName}: ${e.message}")
             try { resolver.delete(uri, null, null) } catch (_: Exception) {}
             Result.failure(workDataOf(KEY_ERROR to "network"))
         } catch (e: Exception) {
+            DiagLog.log("worker error: ${e.javaClass.simpleName}: ${e.message}")
             try { resolver.delete(uri, null, null) } catch (_: Exception) {}
             Result.failure(workDataOf(KEY_ERROR to "unknown"))
         }

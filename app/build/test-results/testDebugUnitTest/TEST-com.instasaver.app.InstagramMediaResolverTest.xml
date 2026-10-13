@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.instasaver.app.InstagramMediaResolverTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-10-12T20:01:12" hostname="mardio-TW-9800-101-HW" time="0.491">
+  <properties/>
+  <testcase name="renderedPage_withoutMedia_returnsNull" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.447"/>
+  <testcase name="plainPhoto_withoutDisplayUrl_fallsBackToOgImage" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.011"/>
+  <testcase name="mediaFromJsUrl_nonCdnUrl_isRejected" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.001"/>
+  <testcase name="photoWithMusic_isResolvedAsHighQualityImage" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.007"/>
+  <testcase name="mediaFromJsUrl_photo_isNotVideo" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.001"/>
+  <testcase name="renderedPage_videoUrlInsideEscapedJson_isResolvedAsVideo" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.004"/>
+  <testcase name="loginWall_isNotMistakenForAPhoto" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.002"/>
+  <testcase name="mediaFromJsUrl_httpNaoHttps_isRejected" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.0"/>
+  <testcase name="jsonEscapedQueryParams_areDecoded" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.003"/>
+  <testcase name="videoPost_isStillResolvedAsVideo" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.002"/>
+  <testcase name="mediaFromJsUrl_fbcdnHost_isAccepted" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.001"/>
+  <testcase name="mediaFromJsUrl_mp4_isVideo" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.001"/>
+  <testcase name="isMediaHost_reconheceHostsDaMeta" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.001"/>
+  <testcase name="photoWithoutAnyMedia_isUnsupported" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.003"/>
+  <testcase name="renderedPage_photoWithMusic_onlyExposesDisplayUrl" classname="com.instasaver.app.InstagramMediaResolverTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
